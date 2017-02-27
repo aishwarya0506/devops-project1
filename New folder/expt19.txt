@@ -1,0 +1,63 @@
+#include<stdio.h>
+int main()
+{
+int pr[10],p[10],bt[10],wt[10],tat[10],i,j,n,pos,temp;
+float at=0,aw=0;
+printf("PRIORITY");
+printf("\n enter number of processess:");
+scanf("%d",&n);
+printf("\n enter burst time and priority for each process");
+for(i=1;i<=n;i++)
+{
+printf("\nP%d\n",i);
+scanf("%d",&bt[i]);
+scanf("%d",&pr[i]);
+p[i]=i;
+}
+for(i=1;i<=n;i++)
+{
+pos=i;
+for(j=i+1;j<=n;j++)
+{
+if(pr[j]<pr[pos])
+pos=j;
+}
+temp=pr[i];
+pr[i]=pr]pos];
+pr[pos]=temp;
+temp=bt[i];
+bt[i]=bt[pos];
+bt[pos]=temp;
+temp=p[i];
+p[i]=p[pos];
+p[pos]=temp;
+}
+wt[1]=0;
+for(i=1;i<n;i++)
+wt[i+1]=wt[i]+bt[i];
+for(i=1;i<=n;i++)
+aw+=wt[i];
+for(i=1;i<=n;i++)
+tat[i]=wt[i]+bt[i];
+for(i=1;i<=n;i++)
+at+=tat[i];
+printf("\n process  burst time  waiting time  turnaround time");
+for(i=1;i<=n;i++)
+{
+printf("\nP %d  %d  %d  %d",p[i],bt[i],wt[i],tat[i]);
+}
+printf("\n average waiting time=%f",aw/n);
+printf("\n average turnaround time=%f",at/n);
+printf("\n Grantt chart is \n");
+printf("\n----------------------\n");
+for(i=1;i<=n;i++)
+{
+printf("P%d",p[i]);
+}
+printf("\n----------------------\n");
+for(i=1;i<=n;i++)
+{
+printf("%d",tat[i]);
+}
+return 0;
+}
